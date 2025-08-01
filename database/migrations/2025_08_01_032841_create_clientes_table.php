@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre', 100);
             $table->string('apellido', 100);
-            $table->string('dni', 8)->unique();
+            $table->bigInteger('dni')->unsigned()->unique();
             $table->string('email')->unique();
             $table->timestamps();
             $table->softDeletes();
