@@ -3,44 +3,18 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Traits\NormalizaClienteData;
 
 class ClienteUpdateRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+
+    use NormalizaClienteData;
+
     public function authorize(): bool
     {
         return true;
     }
 
-    public function prepareForValidation()
-{
-    $data = [];
-    
-    // normalizar dni para que solo acepte números
-    if ($this->has('dni')) {
-        $dni = preg_replace('/[^0-9]/', '', $this->dni);
-        $data['dni'] = (int) $dni;
-    }
-    
-    // email en minúsculas y borrado de espacios en blanco
-    if ($this->has('email')) {
-        $data['email'] = strtolower(trim($this->email));
-    }
-    
-    // nombre en mayúsculas y sin espacios en blanco extras
-    if ($this->has('nombre')) {
-        $data['nombre'] = strtoupper(trim($this->nombre));
-    }
-    
-    // apellido en mayúsculas y sin espacios en blanco extras
-    if ($this->has('apellido')) {
-        $data['apellido'] = strtoupper(trim($this->apellido));
-    }
-    
-    $this->merge($data);
-}
 
     public function rules(): array
     {

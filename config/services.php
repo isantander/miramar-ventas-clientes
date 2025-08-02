@@ -35,4 +35,13 @@ return [
         ],
     ],
 
+    /*
+    *    Microservicios Configuration
+    *    Configuración para comunicación entre microservicios del proyecto Miramar
+    */
+    'productos' => [
+        'url' => env('PRODUCTOS_SERVICE_URL', 'http://localhost:8010'),
+        'timeout' => env('PRODUCTOS_SERVICE_TIMEOUT', 10),
+        'retry' => env('PRODUCTOS_SERVICE_RETRY', 3),
+    ],
 ];

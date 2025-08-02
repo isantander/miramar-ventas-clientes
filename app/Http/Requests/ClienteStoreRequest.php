@@ -3,12 +3,12 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Traits\NormalizaClienteData;
 
 class ClienteStoreRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+    use NormalizaClienteData;
+
     public function authorize(): bool
     {
         return true;
@@ -19,7 +19,7 @@ class ClienteStoreRequest extends FormRequest
         return [
             'nombre' => 'required|string|max:100',
             'apellido' => 'required|string|max:100',
-            'dni' => 'required|string|size:8|unique:clientes,dni',
+            'dni' => 'required|integer|between:1000000,99999999|unique:clientes,dni',
             'email' => 'required|email|max:255|unique:clientes,email',
         ];
     }

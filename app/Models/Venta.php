@@ -30,9 +30,14 @@ class Venta extends Model
     }
 
     // una venta tiene muchos detalles 
-    public function detalles(): HasMany
+    /* public function detalle(): HasMany
     {
         return $this->hasMany(DetalleVenta::class, 'id_venta');
+    } */
+
+    public function detalleVentas(): HasMany
+    {
+        return $this->hasMany(DetalleVenta::class);
     }
 
     // scope para ventas por fecha

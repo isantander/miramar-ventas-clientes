@@ -21,7 +21,7 @@ class DetalleVenta extends Model
     // un detalle pertenece a una veta
     public function venta(): BelongsTo
     {
-        return $this->belongsTo(Venta::class);
+        return $this->belongsTo(Venta::class, 'venta_id');
     }
 
     //scope para filtrar por tipo de producto
