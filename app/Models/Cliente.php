@@ -16,7 +16,7 @@ class Cliente extends Model
         'email',
     ];
 
-    protected $cast = [
+    protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',

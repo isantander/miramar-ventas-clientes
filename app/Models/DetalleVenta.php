@@ -14,7 +14,7 @@ class DetalleVenta extends Model
         'precio_unitario',
     ];
 
-    protected $cast = [
+    protected $casts = [
         'precio_unitario' => 'decimal:2',
     ];
 
