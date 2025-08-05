@@ -23,9 +23,15 @@ class ClienteUpdateRequest extends FormRequest
         return [
             'nombre' => 'required|string|max:100',
             'apellido' => 'required|string|max:100',
-            'dni' => 'required|integer|between:1000000,99999999|unique:clientes,dni',
+            'dni' => 'required|integer|between:1000000,99999999|unique:clientes,dni,' . $clienteId,
             'email' => 'required|email|max:255|unique:clientes,email,' . $clienteId,
         ];        
+    }
+
+    protected function prepareForValidation()
+    {
+        // Eliminar el campo id si viene en el request, no debe ser actualizable
+        $this->request->remove('id');
     }
 
     public function messages(): array
