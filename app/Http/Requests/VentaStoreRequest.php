@@ -70,6 +70,10 @@ class VentaStoreRequest extends FormRequest
             'medio_pago.max' => 'El medio de pago no puede superar los 100 caracteres.',
             'medio_pago.min' => 'El medio de pago debe tener al menos 3 caracteres.',
             
+            'fecha.required' => 'La fecha es obligatoria.',
+            'fecha.date_format' => 'La fecha debe tener formato Y-m-d (ejemplo: 2025-08-06).',
+            'fecha.before_or_equal' => 'La fecha no puede ser futura.',
+            
             'items.required' => 'Debe incluir al menos un producto en la venta.',
             'items.array' => 'Los items deben enviarse como un array.',
             'items.min' => 'Debe incluir al menos un producto.',

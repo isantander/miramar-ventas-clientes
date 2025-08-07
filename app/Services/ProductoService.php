@@ -28,6 +28,11 @@ class ProductoService
             $endpoint = $this->construirEndpoint($tipo, $productoId);
 
             $response = Http::timeout($this->timeout)
+                ->withHeaders([
+                    'X-Service-Token' => config('services.internal.ventas_token'),
+                    'Content-Type' => 'application/json',
+                    'User-Agent' => 'MiramarVentas/1.0'
+                ])
                 ->retry($this->retryTimes, 100) // Retry con 100ms de delay
                 ->get($endpoint);
 
@@ -127,7 +132,8 @@ class ProductoService
     private function construirEndpoint(string $tipo, int $productoId): string
     {
         $pluralTipo = $tipo === 'servicio' ? 'servicios' : 'paquetes';
-        return "{$this->baseUrl}/api/{$pluralTipo}/{$productoId}";
+        // Usar endpoint interno para comunicación entre microservicios
+        return "{$this->baseUrl}/api/internal/{$pluralTipo}/{$productoId}";
     }
 
     /**
@@ -175,7 +181,8 @@ class ProductoService
     public function verificarConectividad(): bool
     {
         try {
-            $response = Http::timeout(5)->get("{$this->baseUrl}/api/servicios");
+            // Usar health check público para verificar conectividad
+            $response = Http::timeout(5)->get("{$this->baseUrl}/api/health");
             return $response->successful();
         } catch (\Exception $e) {
             /*

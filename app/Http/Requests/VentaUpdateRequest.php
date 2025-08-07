@@ -70,6 +70,7 @@ class VentaUpdateRequest extends FormRequest
             'medio_pago.max' => 'El medio de pago no puede superar los 100 caracteres.',
             'medio_pago.min' => 'El medio de pago debe tener al menos 3 caracteres.',
             
+            'fecha.required' => 'La fecha es obligatoria.',
             'fecha.date_format' => 'La fecha debe tener el formato YYYY-MM-DD.',
             'fecha.before_or_equal' => 'La fecha no puede ser futura.',
             
@@ -78,7 +79,8 @@ class VentaUpdateRequest extends FormRequest
             'items.min' => 'Debe incluir al menos un producto.',
             'items.max' => 'No se pueden incluir más de 50 productos por venta.',
             
-            'items.*.id_detalle_venta.integer' => 'El ID del detalle debe ser un número entero.',
+            'items.*.id_detalle_venta.integer' => 'El ID del detalle de venta debe ser un número entero.',
+            'items.*.id_detalle_venta.min' => 'El ID del detalle de venta debe ser mayor a 0.',
             'items.*.producto_id.required' => 'Cada item debe incluir un ID de producto.',
             'items.*.producto_id.integer' => 'El ID del producto debe ser un número entero.',
             'items.*.producto_id.min' => 'El ID del producto debe ser mayor a 0.',
